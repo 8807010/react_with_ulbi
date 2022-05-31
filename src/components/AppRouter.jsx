@@ -3,19 +3,23 @@ import {Route, Routes} from "react-router";
 import About from "../pages/About";
 import Posts from "../pages/Posts";
 import Error from "../pages/Error";
+import {Redirect} from "react-router-dom";
+import {routes} from "../router";
+
+function PostsIdPage() {
+    return null;
+}
 
 const AppRouter = () => {
     return (
         <Routes>
-            <Route
-                path="/about"
-                element={<About />}/>
-            <Route
-                path="/posts"
-                element={<Posts />}/>
-            <Route
-                path="*"
-                element={<Error />}/>
+            {routes.map(route =>
+                <Route
+                    component={route.component}
+                    path={route.path}
+                    exact={route.exact}
+                />
+            )}
         </Routes>
     );
 };
